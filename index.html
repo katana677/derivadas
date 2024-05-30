@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Derivadas</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #7b7bc5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+    input[type="number"],
+    input[type="text"] {
+      width: calc(100% - 22px);
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      background-color: #28a745;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #218838;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calculadora de Derivadas</h1>
+    <form id="derivativeForm">
+      <input type="number" id="coeficiente" placeholder="Coeficiente (a)" required>
+      <input type="number" id="exponente" placeholder="Exponente (n)" required>
+      <button type="button" onclick="calcularDerivada()">Calcular Derivada</button>
+    </form>
+    <div class="result" id="resultado"></div>
+  </div>
+
+  <script>
+    function calcularDerivada() {
+      // Obtener los valores del formulario
+      const coeficiente = parseFloat(document.getElementById('coeficiente').value);
+      const exponente = parseFloat(document.getElementById('exponente').value);
+
+      // Validar los valores
+      if (isNaN(coeficiente) || isNaN(exponente)) {
+        document.getElementById('resultado').textContent = 'Por favor, ingrese valores válidos.';
+        return;
+      }
+
+      // Calcular la derivada
+      const nuevoCoeficiente = coeficiente * exponente;
+      const nuevoExponente = exponente - 1;
+
+      // Mostrar el resultado
+      if (nuevoExponente === 0) {
+        document.getElementById('resultado').textContent = `La derivada es: ${nuevoCoeficiente}`;
+      } else if (nuevoExponente === 1) {
+        document.getElementById('resultado').textContent = `La derivada es: ${nuevoCoeficiente}x`;
+      } else {
+        document.getElementById('resultado').textContent = `La derivada es: ${nuevoCoeficiente}x^${nuevoExponente}`;
+      }
+    }
+  </script>
+</body>
+</html>
